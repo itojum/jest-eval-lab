@@ -7,7 +7,7 @@ const readdirAsync = promisify(readdir);
 const mkdirAsync = promisify(mkdir);
 const writeFileAsync = promisify(writeFile);
 
-const fetchIntroCount = async () => {
+const fetchproblemCount = async () => {
   const exercisesDir = './exercises';
 
   try {
@@ -16,19 +16,19 @@ const fetchIntroCount = async () => {
     // フォルダのみをフィルタリング
     const directories = files.filter(file => {
       const fullPath = join(exercisesDir, file);
-      return statSync(fullPath).isDirectory() && file.endsWith('intro');
+      return statSync(fullPath).isDirectory() && file.endsWith('problem');
     });
     
     return directories.length;
   } catch (error) {
-    console.error('Error fetching intro count:', error);
+    console.error('Error fetching problem count:', error);
     return 0;
   }
 }
 
 // フォルダ構造を生成する関数
 const generateFolderStructure = async (count) => {
-  const folderName = `${String(count).padStart(2, '0')}_intro`;
+  const folderName = `${String(count).padStart(2, '0')}_problem`;
   const folderPath = join('./exercises', folderName);
   
   try {
@@ -56,11 +56,11 @@ const generateFolderStructure = async (count) => {
 
 const main = async () => {
   try {
-    const introCount = await fetchIntroCount();
-    console.log(`既存の 'intro' ディレクトリ数: ${introCount}`);
+    const problemCount = await fetchproblemCount();
+    console.log(`既存の 'problem' ディレクトリ数: ${problemCount}`);
     
     // フォルダ構造を生成（次の番号を使用）
-    const nextCount = introCount + 1;
+    const nextCount = problemCount + 1;
     await generateFolderStructure(nextCount);
   } catch (error) {
     console.error('エラーが発生しました:', error);
