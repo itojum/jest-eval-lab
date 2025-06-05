@@ -1,0 +1,14 @@
+{
+  "name": "jest-eval-lab",
+  "version": "1.0.0",
+  "description": "LLM × Jest によるプログラミング学習支援システム  \r このプロジェクトは、学習者の習熟度に応じた演習問題の生成・評価を自動化し、個別最適な学習体験を提供することを目的としています。",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "dev": "node --experimental-vm-modules node_modules/jest/bin/jest.js exercises/",
+    "generate": "node scripts/generateProblem.js"
+  },
+  "type": "module",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
